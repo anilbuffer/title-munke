@@ -6,7 +6,7 @@
     --primary-hover: #450000;
     --primary-light: #6e0000;
     --primary-subtle: #f8e8e8;
-    --bg-page: #f7f3ee;
+    --bg-page: #ffffff;
     --bg-sidebar: #f8f3ed;
     --border-color: #eadfd4;
     --text-primary: #291e1a;
@@ -16,7 +16,7 @@
 
   body {
     font-family: var(--font-poppins);
-    background-color: var(--bg-page);
+    background-color: #ffffff;
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

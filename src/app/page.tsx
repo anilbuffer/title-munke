@@ -22,7 +22,7 @@ export default function AISettingsPage() {
   const [activeSettingsTab, setActiveSettingsTab] = useState<SettingsSubTab>('governance');
 
   return (
-    <div className="min-h-screen bg-[#fbf9f6] text-[#291e1a] flex p-0 lg:p-4 font-sans">
+    <div className="min-h-screen bg-white text-[#291e1a] flex p-0 lg:p-4 font-sans">
       {/* Sidebar Navigation */}
       <Sidebar
         isMobileOpen={isMobileSidebarOpen}
