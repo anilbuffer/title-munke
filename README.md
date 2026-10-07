@@ -82,6 +82,32 @@ npm run build
 
 ---
 
+## ☁️ Deploying to Vercel
+
+### Option 1: Vercel Dashboard (Recommended)
+1. Push your repository to **GitHub** / **GitLab** / **Bitbucket**.
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Vercel automatically detects Next.js via [`vercel.json`](./vercel.json).
+4. In **Environment Variables**, paste the keys from [`.env.example`](./.env.example):
+   - `OPENAI_API_KEY`
+   - `ANTHROPIC_API_KEY`
+   - `GOOGLE_AI_API_KEY`
+5. Click **Deploy**.
+
+### Option 2: Vercel CLI
+```bash
+# Install Vercel CLI globally
+npm i -g vercel
+
+# Deploy preview build
+vercel
+
+# Deploy to production
+vercel --prod
+```
+
+---
+
 ## 🔌 API & Production Integration Roadmap
 
 1. **Replace Mock State**:
@@ -90,3 +116,4 @@ npm run build
    Store OpenAI, Anthropic, Gemini, and Grok credentials securely in AWS Secrets Manager or HashiCorp Vault; the frontend only receives provider IDs and telemetry status.
 3. **Audit Trails**:
    Every prompt revision or model switch emits an immutable audit event for Title Insurance compliance.
+

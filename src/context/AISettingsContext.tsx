@@ -31,8 +31,12 @@ interface AISettingsContextType {
   updateFunctionTemperature: (key: AIFunctionKey, temp: number) => void;
   
   systemPrompts: Record<string, SystemPromptTemplate>;
-  updateSystemPrompt: (promptId: string, newText: string) => void;
-  resetPromptToDefault: (promptId: string) => void;
+  updateSystemPrompt: (
+    promptId: string,
+    newText: string,
+    metadata?: Partial<SystemPromptTemplate>
+  ) => void;
+  resetPromptToDefault: (promptId: string, defaultTextFallback?: string) => void;
   resetAllPromptsForFunction: (fnKey: AIFunctionKey) => void;
 
   contextConfig: ContextHistoryConfig;

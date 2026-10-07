@@ -77,19 +77,19 @@ Confidence Score: 98.4% | Model: ${currentConfig.model}`,
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-stone-900 rounded-2xl shadow-2xl border border-stone-200 dark:border-stone-800 z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#eadfd4] z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-stone-100 dark:border-stone-800">
+        <div className="flex items-center justify-between p-5 border-b border-[#f0e7dd] bg-[#fdfbf9]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-amber-600 dark:text-amber-400">
+            <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0">
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-stone-900 dark:text-white">
+              <h2 className="text-base sm:text-lg font-bold text-stone-900 font-sans tracking-tight">
                 Live Model Test & Benchmark
               </h2>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
+              <p className="text-xs text-stone-500 font-sans mt-0.5">
                 Execute simulated title queries to verify latency, prompt compliance, and gateway health.
               </p>
             </div>
@@ -97,27 +97,27 @@ Confidence Score: 98.4% | Model: ${currentConfig.model}`,
 
           <button
             onClick={() => setIsTestModalOpen(false)}
-            className="p-1.5 rounded-lg text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+            className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-5 sm:p-6 space-y-4">
+        <div className="p-5 sm:p-6 space-y-4 bg-white">
           
           {/* Target Config Badge */}
-          <div className="p-3 rounded-xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700/80 flex items-center justify-between text-xs">
+          <div className="p-3 rounded-xl bg-[#fdfbf9] border border-[#eadfd4] flex items-center justify-between text-xs">
             <div>
-              <span className="text-stone-400 block text-[10px] uppercase font-semibold">
+              <span className="text-stone-500 block text-[10px] uppercase font-semibold">
                 Active Route Configuration
               </span>
-              <span className="font-bold text-stone-800 dark:text-stone-100">
+              <span className="font-bold text-stone-900">
                 {currentProvider?.name} → {currentConfig.model}
               </span>
             </div>
 
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 text-[11px] font-semibold">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               Gateway Connected
             </span>
@@ -125,18 +125,18 @@ Confidence Score: 98.4% | Model: ${currentConfig.model}`,
 
           {/* Test Prompt Preview */}
           <div>
-            <label className="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
+            <label className="block text-xs font-semibold text-stone-700 mb-1.5 font-sans">
               Simulated Inquiry Prompt
             </label>
-            <div className="p-3 rounded-lg bg-stone-100/70 dark:bg-stone-800/80 border border-stone-200/80 dark:border-stone-700 text-xs font-mono text-stone-700 dark:text-stone-300 leading-relaxed">
+            <div className="p-3 rounded-lg bg-[#faf6f0] border border-[#eadfd4] text-xs font-mono text-stone-800 leading-relaxed">
               {samplePrompt}
             </div>
           </div>
 
           {/* Result Output Display */}
           {testResult && (
-            <div className="p-4 rounded-xl bg-slate-900 text-slate-100 border border-slate-800 font-mono text-xs space-y-2 animate-in fade-in">
-              <div className="flex items-center justify-between text-[11px] text-slate-400 border-b border-slate-800 pb-2">
+            <div className="p-4 rounded-xl bg-stone-900 text-stone-100 border border-stone-800 font-mono text-xs space-y-2 animate-in fade-in">
+              <div className="flex items-center justify-between text-[11px] text-stone-400 border-b border-stone-800 pb-2">
                 <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
                   <CheckCircle2 className="w-3.5 h-3.5" /> HTTP 200 OK
                 </span>
@@ -146,7 +146,7 @@ Confidence Score: 98.4% | Model: ${currentConfig.model}`,
                 </div>
               </div>
 
-              <pre className="whitespace-pre-wrap leading-relaxed text-slate-200 text-[11px]">
+              <pre className="whitespace-pre-wrap leading-relaxed text-stone-200 text-[11px]">
                 {testResult.content}
               </pre>
             </div>
@@ -155,15 +155,15 @@ Confidence Score: 98.4% | Model: ${currentConfig.model}`,
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-stone-50 dark:bg-stone-800/60 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between">
-          <span className="text-[11px] text-stone-500">
+        <div className="p-4 bg-[#faf6f0] border-t border-[#f0e7dd] flex items-center justify-between">
+          <span className="text-[11px] text-stone-500 font-sans">
             Encrypted TLS 1.3 direct gateway pipe
           </span>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsTestModalOpen(false)}
-              className="px-3.5 py-2 text-xs font-semibold rounded-lg text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-700 transition-colors"
+              className="px-3.5 py-2 text-xs font-semibold rounded-lg text-stone-600 hover:bg-stone-200/60 transition-colors cursor-pointer"
             >
               Cancel
             </button>
@@ -171,7 +171,7 @@ Confidence Score: 98.4% | Model: ${currentConfig.model}`,
             <button
               onClick={handleRunTest}
               disabled={isRunning}
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-[#550000] text-white hover:bg-[#680000] shadow-md shadow-[#550000]/20 transition-all active:scale-95 disabled:opacity-70"
+              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-[#550000] text-white hover:bg-[#680000] shadow-md shadow-[#550000]/20 transition-all active:scale-95 disabled:opacity-70 cursor-pointer"
             >
               {isRunning ? (
                 <>
