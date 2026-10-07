@@ -13,6 +13,7 @@ import { AboutModelSwitchingCard } from '@/components/ai-settings/AboutModelSwit
 import { DetailedUsageCard } from '@/components/ai-settings/DetailedUsageCard';
 import { DetailedUsageModal } from '@/components/ai-settings/DetailedUsageModal';
 import { TestConnectionModal } from '@/components/ai-settings/TestConnectionModal';
+import { AddTokensModal } from '@/components/ai-settings/AddTokensModal';
 import { ToastContainer } from '@/components/ai-settings/Toast';
 import { User, CreditCard, Database } from 'lucide-react';
 
@@ -155,6 +156,7 @@ export default function AISettingsPage() {
       {/* Global Modals & Notifications */}
       <DetailedUsageModal />
       <TestConnectionModal />
+      <AddTokensModal />
       <ToastContainer />
     </div>
   );

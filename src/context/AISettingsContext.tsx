@@ -52,6 +52,12 @@ interface AISettingsContextType {
   setIsTestModalOpen: (open: boolean) => void;
   testFunctionTarget: AIFunctionKey | null;
   openTestModalForFunction: (fnKey: AIFunctionKey) => void;
+  isAddTokensModalOpen: boolean;
+  setIsAddTokensModalOpen: (open: boolean) => void;
+  addTokensTargetModel: TokenUsageMetric | null;
+  openAddTokensModal: (model: TokenUsageMetric) => void;
+  closeAddTokensModal: () => void;
+  addTokensToModel: (modelId: string, tokensToAdd: number) => void;
 
   // Active UI Tabs
   activePromptTab: AIFunctionKey;
@@ -80,6 +86,8 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
   const [isUsageModalOpen, setIsUsageModalOpen] = useState(false);
   const [isTestModalOpen, setIsTestModalOpen] = useState(false);
   const [testFunctionTarget, setTestFunctionTarget] = useState<AIFunctionKey | null>('chatbot_qa');
+  const [isAddTokensModalOpen, setIsAddTokensModalOpen] = useState(false);
+  const [addTokensTargetModel, setAddTokensTargetModel] = useState<TokenUsageMetric | null>(null);
 
   // Toasts
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
@@ -249,6 +257,34 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
     setIsTestModalOpen(true);
   };
 
+  const openAddTokensModal = (model: TokenUsageMetric) => {
+    setAddTokensTargetModel(model);
+    setIsAddTokensModalOpen(true);
+  };
+
+  const closeAddTokensModal = () => {
+    setIsAddTokensModalOpen(false);
+    setAddTokensTargetModel(null);
+  };
+
+  const addTokensToModel = (modelId: string, tokensToAdd: number) => {
+    setTokenUsage((prev) =>
+      prev.map((item) =>
+        item.modelId === modelId
+          ? {
+              ...item,
+              totalTokens: item.totalTokens + tokensToAdd,
+            }
+          : item
+      )
+    );
+    addToast({
+      type: 'success',
+      title: 'Tokens Added Successfully',
+      description: `Added tokens to ${modelId}. Quota limit increased.`,
+    });
+  };
+
   return (
     <AISettingsContext.Provider
       value={{
@@ -274,6 +310,12 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
         setIsTestModalOpen,
         testFunctionTarget,
         openTestModalForFunction,
+        isAddTokensModalOpen,
+        setIsAddTokensModalOpen,
+        addTokensTargetModel,
+        openAddTokensModal,
+        closeAddTokensModal,
+        addTokensToModel,
         activePromptTab,
         setActivePromptTab,
         toasts,

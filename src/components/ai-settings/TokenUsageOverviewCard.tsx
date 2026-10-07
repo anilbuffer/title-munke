@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useAISettings } from '@/context/AISettingsContext';
-import { BarChart3, ArrowRight } from 'lucide-react';
+import { BarChart3, ArrowRight, Plus } from 'lucide-react';
 import { formatNumber } from '@/lib/utils';
 
 function OpenAIIcon({ className = 'w-4 h-4 text-emerald-600' }: { className?: string }) {
@@ -23,7 +23,7 @@ function ClaudeIcon({ className = 'w-4 h-4 text-amber-600' }: { className?: stri
 }
 
 export function TokenUsageOverviewCard() {
-  const { tokenUsage, setIsUsageModalOpen } = useAISettings();
+  const { tokenUsage, setIsUsageModalOpen, openAddTokensModal } = useAISettings();
 
   return (
     <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#eadfd4] shadow-xs transition-colors">
@@ -101,33 +101,46 @@ export function TokenUsageOverviewCard() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 pt-3 border-t border-[#f0e7dd] text-left">
-                <div>
-                  <span className="text-[10px] text-stone-400 block font-sans">
-                    Used this month
-                  </span>
-                  <span className="text-xs font-bold text-stone-800 font-mono">
-                    {formatNumber(item.usedTokens)}
-                  </span>
+              {/* Bottom Metrics & Add Tokens Action Button */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-3 border-t border-[#f0e7dd] gap-2.5">
+                <div className="grid grid-cols-3 gap-2 text-left flex-1 min-w-0">
+                  <div>
+                    <span className="text-[10px] text-stone-400 block font-sans">
+                      Used this month
+                    </span>
+                    <span className="text-xs font-bold text-stone-800 font-mono">
+                      {formatNumber(item.usedTokens)}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[10px] text-stone-400 block font-sans">
+                      Remaining
+                    </span>
+                    <span className="text-xs font-bold text-stone-800 font-mono">
+                      {formatNumber(remainingTokens)}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-[10px] text-stone-400 block font-sans">
+                      Reset date
+                    </span>
+                    <span className="text-xs font-semibold text-stone-800 font-sans truncate block">
+                      {item.resetDate}
+                    </span>
+                  </div>
                 </div>
 
-                <div>
-                  <span className="text-[10px] text-stone-400 block font-sans">
-                    Remaining
-                  </span>
-                  <span className="text-xs font-bold text-stone-800 font-mono">
-                    {formatNumber(remainingTokens)}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-[10px] text-stone-400 block font-sans">
-                    Reset date
-                  </span>
-                  <span className="text-xs font-semibold text-stone-800 font-sans">
-                    {item.resetDate}
-                  </span>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => openAddTokensModal(item)}
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-[#faf2f2] text-[#550000] border border-[#ebd8d8] hover:bg-[#550000] hover:text-white transition-all shadow-2xs shrink-0 cursor-pointer active:scale-95 font-sans"
+                  title={`Add tokens to ${item.modelName}`}
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add Tokens</span>
+                </button>
               </div>
             </div>
           );
