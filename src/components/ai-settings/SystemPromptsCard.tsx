@@ -8,9 +8,6 @@ import {
   RotateCcw,
   MessageSquare,
   FileText,
-  GitCommit,
-  Copy,
-  Check,
 } from 'lucide-react';
 import { AIFunctionKey } from '@/types/ai-settings';
 
@@ -18,14 +15,15 @@ function OpenAIBrandIcon({ className = 'w-4 h-4 text-emerald-600' }: { className
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4754 4.4754 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1683a.071.071 0 0 1 .038.052v5.5826a4.5045 4.5045 0 0 1-4.4945 4.4947zm-9.6607-4.1254a4.4706 4.4706 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4998 4.4998 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1683a.0757.0757 0 0 1-.071 0l-4.8303-2.7866A4.5045 4.5045 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.5973 8.3829l2.0201-1.1635a.0804.0804 0 0 1 .071 0l4.8303 2.7913a4.4947 4.4947 0 0 1-.6768 8.1042v-5.6772a.79.79 0 0 0-.4018-.6863zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L8.907 9.2298V6.8974a.0662.0662 0 0 1 .0331-.0615l4.8824-2.8197a4.5045 4.5045 0 0 1 6.6384 4.8872zM12.0002 13.038l-2.4839-1.4339 2.4839-1.434 2.484 1.434-2.484 1.4339z" />
-      </svg>
-    );
-  }
+    </svg>
+  );
+}
 
 function ClaudeBrandIcon({ className = 'w-4 h-4 text-amber-600' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M13.827 3.518l5.836 15.727h-3.415l-1.282-3.664H8.88l-1.258 3.664H4.279L10.14 3.518h3.687zm-1.895 4.497l-2.083 5.922h4.143l-2.06-5.922z" />
+      <circle cx="12" cy="12" r="5" />
+      <path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.05-6.95l-2.12 2.12m-9.66 9.66l-2.12 2.12m0-13.9l2.12 2.12m9.66 9.66l2.12 2.12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -37,57 +35,25 @@ export function SystemPromptsCard() {
     resetAllPromptsForFunction,
     activePromptTab,
     setActivePromptTab,
-    addToast,
   } = useAISettings();
-
-  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const tabs: { key: AIFunctionKey; label: string; icon: React.ElementType }[] = [
     { key: 'chatbot_qa', label: 'Chatbot (Q&A)', icon: MessageSquare },
     { key: 'pdf_ocr', label: 'PDF Extraction (OCR)', icon: FileText },
-    { key: 'chain_of_title', label: 'Chain of Title & Liens', icon: GitCommit },
   ];
 
   const openAiPromptKey = `${activePromptTab}:openai`;
   const openAiPrompt = systemPrompts[openAiPromptKey] || {
     id: openAiPromptKey,
-    functionKey: activePromptTab,
-    provider: 'openai',
-    modelDisplayName: 'OpenAI - GPT-4o-mini',
-    prompt: 'You are a helpful AI assistant for property title searches.',
-    defaultPrompt: 'You are a helpful AI assistant for property title searches.',
+    prompt: `You are a helpful AI assistant. Use the provided document context to answer user questions accurately and concisely. If you don't know the answer, clearly say you don't know.\n\nFollow professional and safe guidelines.`,
     maxLimit: 2000,
-    variables: ['{{property_address}}', '{{parcel_apn}}'],
-    lastModified: 'Default',
   };
 
   const claudePromptKey = `${activePromptTab}:anthropic`;
   const claudePrompt = systemPrompts[claudePromptKey] || {
     id: claudePromptKey,
-    functionKey: activePromptTab,
-    provider: 'anthropic',
-    modelDisplayName: 'Claude - Claude 3.5 Sonnet',
-    prompt: 'You are a helpful AI assistant powered by Claude for Title Munke.',
-    defaultPrompt: 'You are a helpful AI assistant powered by Claude for Title Munke.',
+    prompt: `You are a helpful AI assistant powered by Claude. Use the provided document context to answer user questions in a clear, accurate and concise manner. If the answer is not available in the context, say you don't know.`,
     maxLimit: 2000,
-    variables: ['{{property_address}}', '{{recorded_instruments}}'],
-    lastModified: 'Default',
-  };
-
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    addToast({
-      type: 'info',
-      title: 'Prompt Copied',
-      description: 'System prompt copied to clipboard.',
-    });
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
-  const handleInsertVariable = (promptId: string, currentText: string, variable: string) => {
-    const updated = `${currentText} ${variable}`;
-    updateSystemPrompt(promptId, updated);
   };
 
   return (
@@ -95,22 +61,17 @@ export function SystemPromptsCard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#f0e7dd]">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600">
+          <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shrink-0">
             <FileCode2 className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <h2 className="text-base sm:text-lg font-bold text-stone-900 font-sans">
+              <h2 className="text-base sm:text-lg font-bold text-stone-900 font-sans tracking-tight">
                 System Prompts
               </h2>
-              <span
-                title="These instructions define the behavior, tone and context for the AI."
-                className="cursor-help text-stone-400 hover:text-stone-600"
-              >
-                <Info className="w-3.5 h-3.5" />
-              </span>
+              <Info className="w-3.5 h-3.5 text-stone-400" />
             </div>
-            <p className="text-xs sm:text-sm text-stone-500">
+            <p className="text-xs sm:text-sm text-stone-500 font-sans">
               Customize system prompts for each AI model. These instructions define the behavior, tone and context for the AI.
             </p>
           </div>
@@ -118,15 +79,14 @@ export function SystemPromptsCard() {
 
         <button
           onClick={() => resetAllPromptsForFunction(activePromptTab)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-[#550000] bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-colors self-start sm:self-auto cursor-pointer"
         >
-          <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset to Default</span>
         </button>
       </div>
 
-      {/* Tabs */}
-      <div className="flex items-center gap-2 pb-4 overflow-x-auto no-scrollbar">
+      {/* Tabs matching screenshot */}
+      <div className="flex items-center gap-2 pb-4">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activePromptTab === tab.key;
@@ -134,10 +94,10 @@ export function SystemPromptsCard() {
             <button
               key={tab.key}
               onClick={() => setActivePromptTab(tab.key)}
-              className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-blue-600 text-white shadow-xs shadow-blue-500/25'
-                  : 'bg-[#fbf9f6] text-stone-600 hover:bg-[#f0e7dd] border border-[#eadfd4]'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'bg-white text-stone-600 hover:bg-[#fbf9f6] border border-[#eadfd4]'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -147,121 +107,59 @@ export function SystemPromptsCard() {
         })}
       </div>
 
-      {/* Side-by-Side Prompt Cards */}
+      {/* Side-by-Side Prompt Cards matching screenshot */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* OpenAI Card */}
-        <div className="flex flex-col p-4 rounded-xl border border-[#eadfd4] bg-[#fbf9f6] focus-within:border-emerald-500/60 focus-within:ring-2 focus-within:ring-emerald-500/10 transition-all">
-          <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#eadfd4]">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-emerald-100 flex items-center justify-center">
-                <OpenAIBrandIcon className="w-3.5 h-3.5 text-emerald-700" />
-              </div>
-              <span className="text-xs sm:text-sm font-bold text-stone-900 font-sans">
-                {openAiPrompt.modelDisplayName || 'OpenAI - GPT-4o-mini'}
-              </span>
+        <div className="flex flex-col p-4 rounded-xl border border-[#eadfd4] bg-white">
+          <div className="flex items-center gap-2 pb-3 mb-2 border-b border-[#f0e7dd]">
+            <div className="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center">
+              <OpenAIBrandIcon className="w-3.5 h-3.5 text-emerald-600" />
             </div>
-
-            <button
-              onClick={() => handleCopy(openAiPrompt.id, openAiPrompt.prompt)}
-              className="text-stone-400 hover:text-stone-600 p-1 rounded cursor-pointer"
-              title="Copy prompt text"
-            >
-              {copiedId === openAiPrompt.id ? (
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-              ) : (
-                <Copy className="w-3.5 h-3.5" />
-              )}
-            </button>
+            <span className="text-xs sm:text-sm font-bold text-stone-900 font-sans">
+              OpenAI - GPT-4o-mini
+            </span>
           </div>
 
           <textarea
             value={openAiPrompt.prompt}
             onChange={(e) => updateSystemPrompt(openAiPrompt.id, e.target.value)}
-            rows={7}
-            maxLength={openAiPrompt.maxLimit}
-            className="w-full bg-transparent text-xs sm:text-sm text-stone-800 placeholder-stone-400 resize-none focus:outline-hidden leading-relaxed custom-scrollbar font-sans"
-            placeholder="Define custom instructions for OpenAI model..."
+            rows={6}
+            maxLength={2000}
+            className="w-full bg-transparent text-xs sm:text-sm text-stone-800 resize-none focus:outline-hidden leading-relaxed custom-scrollbar font-sans"
+            placeholder="Define instructions for OpenAI..."
           />
 
-          <div className="pt-2 mt-2 border-t border-[#eadfd4] flex items-center justify-between text-[11px] text-stone-500">
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[10px] uppercase font-semibold text-stone-400">Insert:</span>
-              {openAiPrompt.variables?.map((v) => (
-                <button
-                  key={v}
-                  onClick={() => handleInsertVariable(openAiPrompt.id, openAiPrompt.prompt, v)}
-                  className="px-1.5 py-0.5 rounded bg-white border border-[#eadfd4] hover:border-emerald-500 text-[10px] font-mono text-stone-600 transition-colors cursor-pointer"
-                  title={`Insert ${v}`}
-                >
-                  {v}
-                </button>
-              ))}
-            </div>
-
-            <div className="font-mono text-[11px] text-stone-500 shrink-0 pl-2">
-              <span className={openAiPrompt.prompt.length > 1900 ? 'text-amber-500 font-bold' : ''}>
-                {openAiPrompt.prompt.length}
-              </span>
-              /{openAiPrompt.maxLimit}
-            </div>
+          <div className="pt-2 text-right">
+            <span className="text-[11px] text-stone-400 font-mono">
+              {openAiPrompt.prompt.length}/2000
+            </span>
           </div>
         </div>
 
         {/* Claude Card */}
-        <div className="flex flex-col p-4 rounded-xl border border-[#eadfd4] bg-[#fbf9f6] focus-within:border-amber-500/60 focus-within:ring-2 focus-within:ring-amber-500/10 transition-all">
-          <div className="flex items-center justify-between pb-3 mb-2 border-b border-[#eadfd4]">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-amber-100 flex items-center justify-center">
-                <ClaudeBrandIcon className="w-3.5 h-3.5 text-amber-700" />
-              </div>
-              <span className="text-xs sm:text-sm font-bold text-stone-900 font-sans">
-                {claudePrompt.modelDisplayName || 'Claude'}
-              </span>
+        <div className="flex flex-col p-4 rounded-xl border border-[#eadfd4] bg-white">
+          <div className="flex items-center gap-2 pb-3 mb-2 border-b border-[#f0e7dd]">
+            <div className="w-6 h-6 rounded-md bg-amber-50 flex items-center justify-center">
+              <ClaudeBrandIcon className="w-3.5 h-3.5 text-amber-600" />
             </div>
-
-            <button
-              onClick={() => handleCopy(claudePrompt.id, claudePrompt.prompt)}
-              className="text-stone-400 hover:text-stone-600 p-1 rounded cursor-pointer"
-              title="Copy prompt text"
-            >
-              {copiedId === claudePrompt.id ? (
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-              ) : (
-                <Copy className="w-3.5 h-3.5" />
-              )}
-            </button>
+            <span className="text-xs sm:text-sm font-bold text-stone-900 font-sans">
+              Claude
+            </span>
           </div>
 
           <textarea
             value={claudePrompt.prompt}
             onChange={(e) => updateSystemPrompt(claudePrompt.id, e.target.value)}
-            rows={7}
-            maxLength={claudePrompt.maxLimit}
-            className="w-full bg-transparent text-xs sm:text-sm text-stone-800 placeholder-stone-400 resize-none focus:outline-hidden leading-relaxed custom-scrollbar font-sans"
-            placeholder="Define custom instructions for Claude model..."
+            rows={6}
+            maxLength={2000}
+            className="w-full bg-transparent text-xs sm:text-sm text-stone-800 resize-none focus:outline-hidden leading-relaxed custom-scrollbar font-sans"
+            placeholder="Define instructions for Claude..."
           />
 
-          <div className="pt-2 mt-2 border-t border-[#eadfd4] flex items-center justify-between text-[11px] text-stone-500">
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[10px] uppercase font-semibold text-stone-400">Insert:</span>
-              {claudePrompt.variables?.map((v) => (
-                <button
-                  key={v}
-                  onClick={() => handleInsertVariable(claudePrompt.id, claudePrompt.prompt, v)}
-                  className="px-1.5 py-0.5 rounded bg-white border border-[#eadfd4] hover:border-amber-500 text-[10px] font-mono text-stone-600 transition-colors cursor-pointer"
-                  title={`Insert ${v}`}
-                >
-                  {v}
-                </button>
-              ))}
-            </div>
-
-            <div className="font-mono text-[11px] text-stone-500 shrink-0 pl-2">
-              <span className={claudePrompt.prompt.length > 1900 ? 'text-amber-500 font-bold' : ''}>
-                {claudePrompt.prompt.length}
-              </span>
-              /{claudePrompt.maxLimit}
-            </div>
+          <div className="pt-2 text-right">
+            <span className="text-[11px] text-stone-400 font-mono">
+              {claudePrompt.prompt.length}/2000
+            </span>
           </div>
         </div>
       </div>

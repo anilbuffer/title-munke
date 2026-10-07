@@ -28,25 +28,23 @@ export function AboutModelSwitchingCard() {
   ];
 
   return (
-    <div className="p-5 sm:p-6 rounded-2xl bg-[#fffcf7] border border-[#f3e5d0] shadow-xs transition-colors">
+    <div className="p-5 sm:p-6 rounded-2xl bg-[#fffef4] border border-[#fef08a] shadow-xs transition-colors">
       {/* Header */}
-      <div className="flex items-center gap-2.5 mb-4">
-        <div className="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700 shrink-0">
-          <Lightbulb className="w-4 h-4" />
-        </div>
-        <h3 className="text-sm sm:text-base font-bold text-stone-900 font-sans">
+      <div className="flex items-center gap-2 mb-3.5">
+        <Lightbulb className="w-5 h-5 text-amber-500 fill-amber-400" />
+        <h3 className="text-sm sm:text-base font-bold text-stone-900 font-sans tracking-tight">
           About Model Switching
         </h3>
       </div>
 
-      {/* Numbered List matching reference screenshot */}
+      {/* Numbered List matching reference */}
       <ul className="space-y-3">
         {steps.map((step) => (
           <li key={step.num} className="flex items-start gap-3">
-            <span className="w-5 h-5 rounded-full bg-amber-200/90 text-amber-900 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+            <span className="text-xs font-bold text-stone-700 shrink-0 mt-0.5 font-sans">
               {step.num}
             </span>
-            <span className="text-xs sm:text-[13px] text-stone-700 leading-relaxed font-sans">
+            <span className="text-xs text-stone-700 leading-relaxed font-sans">
               {step.text}
             </span>
           </li>

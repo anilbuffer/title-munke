@@ -22,7 +22,7 @@ export default function AISettingsPage() {
   const [activeSettingsTab, setActiveSettingsTab] = useState<SettingsSubTab>('governance');
 
   return (
-    <div className="min-h-screen bg-[#f7f3ee] text-[#291e1a] flex p-0 lg:p-4 font-sans">
+    <div className="min-h-screen flex p-0 lg:p-4 font-sans">
       {/* Sidebar Navigation */}
       <Sidebar
         isMobileOpen={isMobileSidebarOpen}
@@ -33,7 +33,7 @@ export default function AISettingsPage() {
 
       {/* Main Workspace (Offset for fixed lg sidebar w-72) */}
       <div className="flex-1 lg:pl-76 flex flex-col min-w-0 px-4 sm:px-6 py-4 lg:py-0">
-        
+
         {/* Top Header Card */}
         <div className="mb-5">
           <Header onToggleSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)} />
@@ -53,7 +53,7 @@ export default function AISettingsPage() {
             <div className="space-y-6 animate-in fade-in duration-300">
               {/* Comprehensive Enterprise AI Settings Console */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                
+
                 {/* Left Column (8 cols): Model Configuration, Prompts, Context & Usage */}
                 <div className="lg:col-span-7 xl:col-span-8 space-y-6">
                   {/* 1. Model Configuration */}
