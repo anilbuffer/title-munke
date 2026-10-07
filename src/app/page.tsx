@@ -22,7 +22,7 @@ export default function AISettingsPage() {
   const [activeSettingsTab, setActiveSettingsTab] = useState<SettingsSubTab>('governance');
 
   return (
-    <div className="min-h-screen bg-[#f7f3ee] text-[#291e1a] flex p-0 lg:p-4 font-sans">
+    <div className="min-h-screen bg-[#fbf9f6] text-[#291e1a] flex p-0 lg:p-4 font-sans">
       {/* Sidebar Navigation */}
       <Sidebar
         isMobileOpen={isMobileSidebarOpen}
@@ -31,8 +31,8 @@ export default function AISettingsPage() {
         onSelectNav={(item) => setActiveNav(item)}
       />
 
-      {/* Main Workspace (Offset for fixed lg sidebar w-72) */}
-      <div className="flex-1 lg:pl-76 flex flex-col min-w-0 px-4 sm:px-6 py-4 lg:py-0">
+      {/* Main Workspace (Offset for fixed lg sidebar w-72 (288px) + ml-4 (16px) = 304px) */}
+      <div className="flex-1 lg:pl-[304px] flex flex-col min-w-0 px-4 sm:px-6 py-4 lg:py-0">
         
         {/* Top Header Card */}
         <div className="mb-5">
