@@ -1,6 +1,6 @@
-'use client';
-
 import React from 'react';
+import { useAISettings } from '@/context/AISettingsContext';
+import { AI_PROVIDERS } from '@/data/mock-ai-settings';
 import {
   Network,
   Database,
@@ -10,6 +10,13 @@ import {
 } from 'lucide-react';
 
 export function SystemArchitectureDiagram() {
+  const { functionConfigs } = useAISettings();
+  const chatbotConfig = functionConfigs['chatbot_qa'];
+  const activeProviderId = chatbotConfig?.provider || 'openai';
+  const activeProviderObj = AI_PROVIDERS.find((p) => p.id === activeProviderId);
+  const activeModelObj = activeProviderObj?.availableModels.find((m) => m.id === chatbotConfig?.model);
+  const modelDisplayName = activeModelObj ? activeModelObj.name : 'GPT-4o-mini';
+
   return (
     <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#eadfd4] shadow-xs transition-colors">
       {/* Header */}
@@ -44,39 +51,67 @@ export function SystemArchitectureDiagram() {
         {/* Tier 2: Providers Grid */}
         <div className="grid grid-cols-4 gap-1.5 w-full max-w-[310px]">
           {/* OpenAI */}
-          <div className="p-2 rounded-lg bg-white border border-[#eadfd4] text-center shadow-2xs">
+          <div className={`p-2 rounded-lg text-center shadow-2xs transition-all ${
+            activeProviderId === 'openai'
+              ? 'bg-[#faf2f2] border-2 border-[#550000] shadow-xs ring-1 ring-[#550000]/20'
+              : 'bg-white border border-[#eadfd4]'
+          }`}>
             <div className="w-5 h-5 mx-auto rounded-sm bg-[#faf2f2] flex items-center justify-center mb-1">
               <span className="text-[9px] font-bold text-[#550000]">AI</span>
             </div>
             <div className="text-[11px] font-bold text-stone-900 truncate font-sans">OpenAI</div>
-            <div className="text-[9px] text-stone-500 truncate font-sans">GPT-4o</div>
+            <div className="text-[9px] text-stone-500 truncate font-sans">
+              {activeProviderId === 'openai' ? modelDisplayName : 'GPT-4o'}
+            </div>
           </div>
 
           {/* Claude */}
-          <div className="p-2 rounded-lg bg-white border border-[#eadfd4] text-center shadow-2xs">
+          <div className={`p-2 rounded-lg text-center shadow-2xs transition-all ${
+            activeProviderId === 'anthropic'
+              ? 'bg-[#faf2f2] border-2 border-[#550000] shadow-xs ring-1 ring-[#550000]/20'
+              : 'bg-white border border-[#eadfd4]'
+          }`}>
             <div className="w-5 h-5 mx-auto rounded-sm bg-amber-50 flex items-center justify-center mb-1">
               <span className="text-[9px] font-bold text-amber-700">AI</span>
             </div>
             <div className="text-[11px] font-bold text-stone-900 truncate font-sans">Claude</div>
-            <div className="text-[9px] text-stone-500 truncate font-sans">Claude 3</div>
+            <div className="text-[9px] text-stone-500 truncate font-sans">
+              {activeProviderId === 'anthropic' ? modelDisplayName : 'Claude 3'}
+            </div>
           </div>
 
           {/* Grok */}
-          <div className="p-2 rounded-lg bg-white border border-stone-200 text-center shadow-2xs">
+          <div className={`p-2 rounded-lg text-center shadow-2xs transition-all ${
+            activeProviderId === 'xai'
+              ? 'bg-[#faf2f2] border-2 border-[#550000] shadow-xs ring-1 ring-[#550000]/20'
+              : 'bg-white border border-stone-200'
+          }`}>
             <div className="w-5 h-5 mx-auto rounded-sm bg-stone-100 flex items-center justify-center mb-1">
               <span className="text-[9px] font-bold text-stone-700">X1</span>
             </div>
             <div className="text-[11px] font-bold text-stone-900 truncate font-sans">Grok</div>
-            <div className="text-[9px] text-stone-500 truncate font-sans">Grok 1</div>
+            <div className="text-[9px] text-stone-500 truncate font-sans">
+              {activeProviderId === 'xai' ? modelDisplayName : 'Grok 1'}
+            </div>
           </div>
 
-          {/* More Providers */}
-          <div className="p-2 rounded-lg bg-white border border-stone-200 text-center shadow-2xs">
+          {/* More Providers / Gemini */}
+          <div className={`p-2 rounded-lg text-center shadow-2xs transition-all ${
+            activeProviderId === 'google'
+              ? 'bg-[#faf2f2] border-2 border-[#550000] shadow-xs ring-1 ring-[#550000]/20'
+              : 'bg-white border border-stone-200'
+          }`}>
             <div className="w-5 h-5 mx-auto rounded-sm bg-stone-100 flex items-center justify-center mb-1">
-              <span className="text-[9px] font-bold text-stone-500">•••</span>
+              <span className="text-[9px] font-bold text-stone-500">
+                {activeProviderId === 'google' ? 'AI' : '•••'}
+              </span>
             </div>
-            <div className="text-[11px] font-bold text-stone-900 truncate font-sans">More</div>
-            <div className="text-[9px] text-stone-500 truncate font-sans">Providers</div>
+            <div className="text-[11px] font-bold text-stone-900 truncate font-sans">
+              {activeProviderId === 'google' ? 'Gemini' : 'More'}
+            </div>
+            <div className="text-[9px] text-stone-500 truncate font-sans">
+              {activeProviderId === 'google' ? modelDisplayName : 'Providers'}
+            </div>
           </div>
         </div>
 
@@ -140,8 +175,8 @@ export function SystemArchitectureDiagram() {
             <Bot className="w-3.5 h-3.5 text-[#550000]" />
             <span>Chatbot</span>
           </div>
-          <p className="text-[10px] text-[#7a2020] mt-0.5 font-sans">
-            Uses selected model with history & context
+          <p className="text-[10px] text-[#7a2020] mt-0.5 font-sans truncate px-1" title={`Uses ${activeProviderObj?.name || 'OpenAI'} (${modelDisplayName}) with history & context`}>
+            Uses {activeProviderObj?.name || 'OpenAI'} ({modelDisplayName}) with history & context
           </p>
         </div>
 

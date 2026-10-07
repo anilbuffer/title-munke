@@ -138,13 +138,21 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
     setIsDirty(true);
   };
 
-  const updateSystemPrompt = (promptId: string, newText: string) => {
+  const updateSystemPrompt = (promptId: string, newText: string, metadata?: Partial<SystemPromptTemplate>) => {
     setSystemPrompts((prev) => {
-      if (!prev[promptId]) return prev;
+      const existing = prev[promptId];
       return {
         ...prev,
         [promptId]: {
-          ...prev[promptId],
+          ...(existing || {
+            id: promptId,
+            functionKey: activePromptTab,
+            provider: 'openai',
+            modelDisplayName: promptId,
+            defaultPrompt: newText,
+            maxLimit: 2000,
+          }),
+          ...metadata,
           prompt: newText,
           lastModified: 'Just now',
         },
@@ -153,14 +161,22 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
     setIsDirty(true);
   };
 
-  const resetPromptToDefault = (promptId: string) => {
+  const resetPromptToDefault = (promptId: string, defaultTextFallback?: string) => {
     setSystemPrompts((prev) => {
-      if (!prev[promptId]) return prev;
+      const existing = prev[promptId];
+      const targetText = existing?.defaultPrompt || defaultTextFallback || '';
       return {
         ...prev,
         [promptId]: {
-          ...prev[promptId],
-          prompt: prev[promptId].defaultPrompt,
+          ...(existing || {
+            id: promptId,
+            functionKey: activePromptTab,
+            provider: 'openai',
+            modelDisplayName: promptId,
+            maxLimit: 2000,
+          }),
+          prompt: targetText,
+          defaultPrompt: targetText,
           lastModified: 'Reset to default',
         },
       };
