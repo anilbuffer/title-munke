@@ -63,8 +63,8 @@ export function DetailedUsageModal() {
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-[#eadfd4] z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        
+      <div className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-[#eadfd4] z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-6 border-b border-[#f0e7dd] bg-[#fdfbf9]">
           <div className="flex items-center gap-3">
@@ -104,11 +104,10 @@ export function DetailedUsageModal() {
                         setSelectedRange(range);
                         setIsDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-3.5 py-1.5 text-xs transition-colors cursor-pointer ${
-                        selectedRange === range
-                          ? 'bg-[#faf2f2] text-[#550000] font-bold'
-                          : 'text-stone-700 hover:bg-stone-50'
-                      }`}
+                      className={`w-full text-left px-3.5 py-1.5 text-xs transition-colors cursor-pointer ${selectedRange === range
+                        ? 'bg-[#faf2f2] text-[#550000] font-bold'
+                        : 'text-stone-700 hover:bg-stone-50'
+                        }`}
                     >
                       {range}
                     </button>
@@ -146,6 +145,7 @@ export function DetailedUsageModal() {
                 <tr>
                   <th className="py-2.5 px-4 font-bold text-stone-700">Model Provider</th>
                   <th className="py-2.5 px-4 font-bold text-stone-700">Consumed Tokens</th>
+                  <th className="py-2.5 px-4 font-bold text-stone-700">Monthly Tokens</th>
                   <th className="py-2.5 px-4 font-bold text-stone-700">Status</th>
                 </tr>
               </thead>
@@ -162,6 +162,9 @@ export function DetailedUsageModal() {
                     </td>
                     <td className="py-3 px-4 font-mono font-medium text-stone-800">
                       {m.usedTokens.toLocaleString()}
+                    </td>
+                    <td className="py-3 px-4 font-mono font-medium text-stone-600">
+                      {m.totalTokens.toLocaleString()}
                     </td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center gap-1 text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full font-semibold">

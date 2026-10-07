@@ -58,8 +58,8 @@ export function AddTokensModal() {
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-[#eadfd4] z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        
+      <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#eadfd4] z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+
         {/* Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-[#f0e7dd]">
           <div className="flex items-center gap-3">
@@ -87,7 +87,7 @@ export function AddTokensModal() {
 
         {/* Modal Body */}
         <div className="p-5 sm:p-6 space-y-5">
-          
+
           <div>
             <label className="text-xs font-bold text-stone-800 uppercase tracking-wider block mb-2 font-sans">
               Select Token Allocation Package
@@ -110,11 +110,10 @@ export function AddTokensModal() {
                     key={pkg.amount}
                     type="button"
                     onClick={() => setSelectedTokens(pkg.amount)}
-                    className={`p-3.5 rounded-xl border text-left transition-all relative cursor-pointer ${
-                      isSelected
-                        ? 'border-[#550000] bg-[#faf2f2] shadow-xs ring-1 ring-[#550000]/20'
-                        : 'border-[#eadfd4] bg-white hover:bg-stone-50 hover:border-stone-300'
-                    }`}
+                    className={`p-3.5 rounded-xl border text-left transition-all relative cursor-pointer ${isSelected
+                      ? 'border-[#550000] bg-[#faf2f2] shadow-xs ring-1 ring-[#550000]/20'
+                      : 'border-[#eadfd4] bg-white hover:bg-stone-50 hover:border-stone-300'
+                      }`}
                   >
                     {pkg.badge && (
                       <span className="absolute top-2 right-2 text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-[#550000] text-white">
@@ -179,7 +178,7 @@ export function AddTokensModal() {
           >
             Cancel
           </button>
-          
+
           <button
             type="button"
             onClick={handleConfirm}
