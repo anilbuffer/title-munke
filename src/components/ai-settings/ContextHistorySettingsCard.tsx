@@ -30,7 +30,16 @@ export function ContextHistorySettingsCard() {
         <div>
           <label className="flex items-center gap-1.5 text-xs font-semibold text-stone-700 mb-1.5">
             <span>Context Window (tokens)</span>
-            <Info className="w-3.5 h-3.5 text-stone-400" />
+            <span className="relative group/tooltip inline-flex items-center cursor-help" title="Maximum tokens of conversation history and document context sent to the AI model per request (e.g. 4,000 tokens ≈ 3,000 words).">
+              <Info className="w-3.5 h-3.5 text-stone-400 group-hover/tooltip:text-[#550000] transition-colors" />
+              <span
+                role="tooltip"
+                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-2.5 rounded-lg bg-stone-900 text-stone-100 text-[11px] font-normal leading-relaxed text-left shadow-xl z-50 opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-150 font-sans"
+              >
+                Maximum tokens of conversation history and document context sent to the AI model per request (e.g. 4,000 tokens ≈ 3,000 words).
+                <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-stone-900" />
+              </span>
+            </span>
           </label>
 
           <input
@@ -53,7 +62,16 @@ export function ContextHistorySettingsCard() {
         <div>
           <label className="flex items-center gap-1.5 text-xs font-semibold text-stone-700 mb-1.5">
             <span>Conversation History Limit</span>
-            <Info className="w-3.5 h-3.5 text-stone-400" />
+            <span className="relative group/tooltip inline-flex items-center cursor-help" title="Number of previous messages retained in session memory to maintain conversational context across multiple questions.">
+              <Info className="w-3.5 h-3.5 text-stone-400 group-hover/tooltip:text-[#550000] transition-colors" />
+              <span
+                role="tooltip"
+                className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-2.5 rounded-lg bg-stone-900 text-stone-100 text-[11px] font-normal leading-relaxed text-left shadow-xl z-50 opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-150 font-sans"
+              >
+                Number of previous messages retained in session memory to maintain conversational context across multiple questions.
+                <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-stone-900" />
+              </span>
+            </span>
           </label>
 
           <div className="relative">

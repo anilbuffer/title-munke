@@ -150,7 +150,16 @@ export function SystemPromptsCard() {
               <h2 className="text-base sm:text-lg font-bold text-stone-900 font-sans tracking-tight">
                 System Prompts
               </h2>
-              <Info className="w-3.5 h-3.5 text-stone-400" />
+              <span className="relative group/tooltip inline-flex items-center cursor-help" title="Tailor behavior and guardrails for each active and fallback model. Variables like {parcel_apn} are injected at runtime.">
+                <Info className="w-3.5 h-3.5 text-stone-400 group-hover/tooltip:text-[#550000] transition-colors" />
+                <span
+                  role="tooltip"
+                  className="pointer-events-none absolute bottom-full left-0 mb-2 w-64 p-2.5 rounded-lg bg-stone-900 text-stone-100 text-[11px] font-normal leading-relaxed text-left shadow-xl z-50 opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-150 font-sans"
+                >
+                  Tailor behavior and guardrails for each active and fallback model. Variables like &#123;parcel_apn&#125; are injected at runtime.
+                  <span className="absolute top-full left-4 border-4 border-transparent border-t-stone-900" />
+                </span>
+              </span>
             </div>
             <p className="text-xs sm:text-sm text-stone-500 font-sans">
               Customize system prompts for each AI model. Instructions automatically synchronize with your selected model.

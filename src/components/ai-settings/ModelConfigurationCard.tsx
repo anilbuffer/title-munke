@@ -106,7 +106,16 @@ export function ModelConfigurationCard() {
                 <div className="flex-1">
                   <label className="flex items-center gap-1 text-[11px] font-medium text-stone-500 mb-1">
                     <span>Provider</span>
-                    <Info className="w-3 h-3 text-stone-400" />
+                    <span className="relative group/tooltip inline-flex items-center cursor-help" title="The AI gateway provider (OpenAI, Anthropic Claude, Google Gemini, or xAI) routed to execute this specific task.">
+                      <Info className="w-3 h-3 text-stone-400 group-hover/tooltip:text-[#550000] transition-colors" />
+                      <span
+                        role="tooltip"
+                        className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-2 rounded-lg bg-stone-900 text-stone-100 text-[11px] font-normal leading-relaxed text-left shadow-xl z-50 opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-150 font-sans"
+                      >
+                        The AI gateway provider (OpenAI, Anthropic Claude, Google Gemini, or xAI) routed to execute this specific task.
+                        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-stone-900" />
+                      </span>
+                    </span>
                   </label>
                   <div className="relative">
                     <select
