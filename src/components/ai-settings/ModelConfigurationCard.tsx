@@ -10,15 +10,12 @@ import {
   Compass,
   Info,
   ChevronDown,
-  Sparkles,
-  Zap,
-  SlidersHorizontal,
   ChevronRight,
+  Zap,
 } from 'lucide-react';
 import { AI_PROVIDERS } from '@/data/mock-ai-settings';
 import { AIFunctionKey, AIProviderId } from '@/types/ai-settings';
 
-// Custom SVG Provider Logos
 function ProviderLogo({ providerId, className = 'w-4 h-4' }: { providerId: string; className?: string }) {
   if (providerId === 'openai') {
     return (
@@ -41,7 +38,6 @@ function ProviderLogo({ providerId, className = 'w-4 h-4' }: { providerId: strin
       </svg>
     );
   }
-  // Grok / xAI
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -50,10 +46,9 @@ function ProviderLogo({ providerId, className = 'w-4 h-4' }: { providerId: strin
 }
 
 export function ModelConfigurationCard() {
-  const { functionConfigs, updateFunctionModel, openTestModalForFunction } = useAISettings();
+  const { functionConfigs, updateFunctionModel } = useAISettings();
   const [showAdvancedModels, setShowAdvancedModels] = useState(false);
 
-  // Group functions
   const primaryFunctions: AIFunctionKey[] = ['chatbot_qa', 'pdf_ocr'];
   const specializedFunctions: AIFunctionKey[] = ['chain_of_title', 'legal_desc'];
 
@@ -65,40 +60,39 @@ export function ModelConfigurationCard() {
     const availableModels = currentProvider.availableModels;
     const currentModel = availableModels.find((m) => m.id === config.model) || availableModels[0];
 
-    // Icon helper
     const getIcon = () => {
       switch (fnKey) {
         case 'chatbot_qa':
-          return <MessageSquare className="w-5 h-5 text-blue-600 dark:text-blue-400" />;
+          return <MessageSquare className="w-5 h-5 text-blue-600" />;
         case 'pdf_ocr':
-          return <FileText className="w-5 h-5 text-rose-600 dark:text-rose-400" />;
+          return <FileText className="w-5 h-5 text-rose-600" />;
         case 'chain_of_title':
-          return <GitCommit className="w-5 h-5 text-amber-600 dark:text-amber-400" />;
+          return <GitCommit className="w-5 h-5 text-amber-600" />;
         case 'legal_desc':
-          return <Compass className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />;
+          return <Compass className="w-5 h-5 text-emerald-600" />;
       }
     };
 
     const getIconBg = () => {
       switch (fnKey) {
         case 'chatbot_qa':
-          return 'bg-blue-50 dark:bg-blue-950/50 border-blue-200 dark:border-blue-800';
+          return 'bg-blue-50 border-blue-200';
         case 'pdf_ocr':
-          return 'bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800';
+          return 'bg-rose-50 border-rose-200';
         case 'chain_of_title':
-          return 'bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-800';
+          return 'bg-amber-50 border-amber-200';
         case 'legal_desc':
-          return 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800';
+          return 'bg-emerald-50 border-emerald-200';
       }
     };
 
     return (
       <div
         key={fnKey}
-        className="p-4 sm:p-5 rounded-xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900/60 shadow-xs hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-200"
+        className="p-4 sm:p-5 rounded-xl border border-[#eadfd4] bg-[#fbf9f6] shadow-2xs hover:border-[#ded0c2] transition-all duration-200"
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          {/* Left: Info & Description */}
+          {/* Left: Info */}
           <div className="flex items-start gap-3.5 max-w-xl">
             <div className={`w-10 h-10 rounded-xl border flex items-center justify-center shrink-0 mt-0.5 ${getIconBg()}`}>
               {getIcon()}
@@ -106,20 +100,19 @@ export function ModelConfigurationCard() {
 
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-sm sm:text-base font-semibold text-stone-900 dark:text-stone-100">
+                <h3 className="text-sm sm:text-base font-semibold text-stone-900 font-sans">
                   {config.label}
                 </h3>
-                <span className="text-[10px] font-medium text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-full border border-stone-200 dark:border-stone-700">
+                <span className="text-[10px] font-medium text-stone-600 bg-white px-2 py-0.5 rounded-full border border-[#eadfd4]">
                   {config.badge}
                 </span>
               </div>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 leading-relaxed">
+              <p className="text-xs text-stone-500 mt-1 leading-relaxed">
                 {config.description}
               </p>
 
-              {/* Model specs footnote */}
               {currentModel && (
-                <div className="flex items-center flex-wrap gap-2 mt-2 pt-2 border-t border-stone-100 dark:border-stone-800/60 text-[11px] text-stone-400">
+                <div className="flex items-center flex-wrap gap-2 mt-2 pt-2 border-t border-[#eadfd4]/60 text-[11px] text-stone-500">
                   <span className="flex items-center gap-1">
                     <Zap className="w-3 h-3 text-amber-500" /> ~{currentModel.speedLatencyMs}ms
                   </span>
@@ -134,9 +127,9 @@ export function ModelConfigurationCard() {
 
           {/* Right: Provider & Model Selectors */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 lg:w-[420px]">
-            {/* Provider Selector */}
+            {/* Provider */}
             <div className="flex-1">
-              <label className="flex items-center gap-1 text-[11px] font-semibold text-stone-600 dark:text-stone-400 mb-1.5">
+              <label className="flex items-center gap-1 text-[11px] font-semibold text-stone-600 mb-1.5">
                 <span>Provider</span>
                 <span title="Routing provider API endpoint" className="cursor-help">
                   <Info className="w-3 h-3 text-stone-400" />
@@ -152,7 +145,7 @@ export function ModelConfigurationCard() {
                     const defaultModel = newProviderObj?.availableModels[0]?.id || 'gpt-4o-mini';
                     updateFunctionModel(fnKey, newProviderId, defaultModel);
                   }}
-                  className="w-full appearance-none bg-stone-50 dark:bg-stone-800/90 border border-stone-200 dark:border-stone-700 rounded-lg px-3 py-2 pl-9 text-xs sm:text-sm font-medium text-stone-800 dark:text-stone-200 focus:outline-hidden focus:ring-2 focus:ring-[#550000] focus:border-transparent transition-all cursor-pointer shadow-2xs"
+                  className="w-full appearance-none bg-white border border-[#ded5cb] rounded-lg px-3 py-2 pl-9 text-xs sm:text-sm font-medium text-stone-800 focus:outline-hidden focus:ring-2 focus:ring-[#550000] focus:border-transparent transition-all cursor-pointer shadow-2xs"
                 >
                   {AI_PROVIDERS.map((prov) => (
                     <option key={prov.id} value={prov.id}>
@@ -161,8 +154,7 @@ export function ModelConfigurationCard() {
                   ))}
                 </select>
 
-                {/* Provider Icon in Input */}
-                <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-600 dark:text-stone-300 pointer-events-none">
+                <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-600 pointer-events-none">
                   <ProviderLogo providerId={config.provider} className="w-4 h-4" />
                 </div>
 
@@ -172,9 +164,9 @@ export function ModelConfigurationCard() {
               </div>
             </div>
 
-            {/* Model Selector */}
+            {/* Model */}
             <div className="flex-1">
-              <label className="flex items-center gap-1 text-[11px] font-semibold text-stone-600 dark:text-stone-400 mb-1.5">
+              <label className="flex items-center gap-1 text-[11px] font-semibold text-stone-600 mb-1.5">
                 <span>Model</span>
               </label>
 
@@ -182,7 +174,7 @@ export function ModelConfigurationCard() {
                 <select
                   value={config.model}
                   onChange={(e) => updateFunctionModel(fnKey, config.provider, e.target.value)}
-                  className="w-full appearance-none bg-stone-50 dark:bg-stone-800/90 border border-stone-200 dark:border-stone-700 rounded-lg px-3 py-2 text-xs sm:text-sm font-medium text-stone-800 dark:text-stone-200 focus:outline-hidden focus:ring-2 focus:ring-[#550000] focus:border-transparent transition-all cursor-pointer shadow-2xs"
+                  className="w-full appearance-none bg-white border border-[#ded5cb] rounded-lg px-3 py-2 text-xs sm:text-sm font-medium text-stone-800 focus:outline-hidden focus:ring-2 focus:ring-[#550000] focus:border-transparent transition-all cursor-pointer shadow-2xs"
                 >
                   {availableModels.map((m) => (
                     <option key={m.id} value={m.id}>
@@ -203,18 +195,18 @@ export function ModelConfigurationCard() {
   };
 
   return (
-    <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm transition-colors">
-      {/* Card Header */}
-      <div className="flex items-center justify-between pb-4 mb-4 border-b border-stone-100 dark:border-stone-800">
+    <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#eadfd4] shadow-xs transition-colors">
+      {/* Header */}
+      <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#f0e7dd]">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
             <Layers className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-base sm:text-lg font-bold text-stone-900 dark:text-white">
+            <h2 className="text-base sm:text-lg font-bold text-stone-900 font-sans">
               Model Configuration
             </h2>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
+            <p className="text-xs sm:text-sm text-stone-500">
               Select AI model and provider for each function.
             </p>
           </div>
@@ -222,23 +214,21 @@ export function ModelConfigurationCard() {
 
         <button
           onClick={() => setShowAdvancedModels(!showAdvancedModels)}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#550000] dark:text-rose-400 hover:underline px-2 py-1 rounded"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#550000] hover:text-[#700000] px-2 py-1 rounded cursor-pointer"
         >
           <span>{showAdvancedModels ? 'Fewer Pipelines' : 'Specialized Title Models'}</span>
           <ChevronRight className={`w-3.5 h-3.5 transition-transform ${showAdvancedModels ? 'rotate-90' : ''}`} />
         </button>
       </div>
 
-      {/* Primary Function Rows (Chatbot Q&A & PDF Extraction) */}
       <div className="space-y-3.5">
         {primaryFunctions.map((fnKey) => renderFunctionRow(fnKey))}
 
-        {/* Specialized Title Intelligence Rows (Toggled) */}
         {showAdvancedModels && (
           <div className="space-y-3.5 pt-2 animate-in fade-in duration-300">
-            <div className="flex items-center gap-2 px-1 text-xs font-semibold text-stone-400 uppercase tracking-wider">
+            <div className="flex items-center gap-2 px-1 text-xs font-semibold text-stone-500 uppercase tracking-wider">
               <span>Specialized Title Records Automation</span>
-              <div className="flex-1 h-px bg-stone-200 dark:bg-stone-800" />
+              <div className="flex-1 h-px bg-[#eadfd4]" />
             </div>
             {specializedFunctions.map((fnKey) => renderFunctionRow(fnKey))}
           </div>

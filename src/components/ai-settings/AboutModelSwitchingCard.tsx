@@ -28,13 +28,13 @@ export function AboutModelSwitchingCard() {
   ];
 
   return (
-    <div className="p-5 sm:p-6 rounded-2xl bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-900/40 shadow-xs transition-colors">
+    <div className="p-5 sm:p-6 rounded-2xl bg-[#fffcf7] border border-[#f3e5d0] shadow-xs transition-colors">
       {/* Header */}
       <div className="flex items-center gap-2.5 mb-4">
-        <div className="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-900/60 flex items-center justify-center text-amber-700 dark:text-amber-400 shrink-0">
+        <div className="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700 shrink-0">
           <Lightbulb className="w-4 h-4" />
         </div>
-        <h3 className="text-sm sm:text-base font-bold text-stone-900 dark:text-white">
+        <h3 className="text-sm sm:text-base font-bold text-stone-900 font-sans">
           About Model Switching
         </h3>
       </div>
@@ -43,10 +43,10 @@ export function AboutModelSwitchingCard() {
       <ul className="space-y-3">
         {steps.map((step) => (
           <li key={step.num} className="flex items-start gap-3">
-            <span className="w-5 h-5 rounded-full bg-amber-200/80 dark:bg-amber-900/80 text-amber-900 dark:text-amber-200 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+            <span className="w-5 h-5 rounded-full bg-amber-200/90 text-amber-900 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
               {step.num}
             </span>
-            <span className="text-xs sm:text-[13px] text-stone-700 dark:text-stone-300 leading-relaxed font-sans">
+            <span className="text-xs sm:text-[13px] text-stone-700 leading-relaxed font-sans">
               {step.text}
             </span>
           </li>

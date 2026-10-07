@@ -3,16 +3,21 @@
 @layer base {
   :root {
     --primary: #550000;
-    --primary-hover: #6a0000;
-    --primary-light: #800000;
-    --primary-subtle: #f8ecec;
+    --primary-hover: #450000;
+    --primary-light: #6e0000;
+    --primary-subtle: #f8e8e8;
+    --bg-page: #f7f3ee;
+    --bg-sidebar: #f8f3ed;
+    --border-color: #eadfd4;
+    --text-primary: #291e1a;
+    --text-secondary: #746761;
     --font-poppins: var(--font-poppins), 'Poppins', system-ui, -apple-system, sans-serif;
   }
 
   body {
     font-family: var(--font-poppins);
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -20,8 +25,8 @@
 
 /* Custom smooth scrollbars */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -29,12 +34,12 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(180, 165, 155, 0.4);
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.7);
+  background: rgba(140, 125, 115, 0.7);
 }
 
 .no-scrollbar::-webkit-scrollbar {
