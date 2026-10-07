@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-poppins: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
 
 @layer base {
   :root {
@@ -11,11 +17,26 @@
     --border-color: #eadfd4;
     --text-primary: #291e1a;
     --text-secondary: #746761;
-    --font-poppins: var(--font-poppins), 'Poppins', system-ui, -apple-system, sans-serif;
+    --font-poppins: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  *,
+  ::before,
+  ::after {
+    font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html,
+  body,
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   }
 
   body {
-    font-family: var(--font-poppins);
     background-color: #ffffff;
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
