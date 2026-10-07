@@ -39,8 +39,8 @@ export function ModelConfigurationCard() {
       title: 'Chatbot (Q&A)',
       description: 'Used for answering user questions in chat based on documents and knowledge base.',
       icon: MessageSquare,
-      iconColor: 'text-blue-500',
-      iconBg: 'bg-blue-50 border-blue-100',
+      iconColor: 'text-[#550000]',
+      iconBg: 'bg-[#faf2f2] border-[#ebd8d8]',
     },
     {
       key: 'pdf_ocr',

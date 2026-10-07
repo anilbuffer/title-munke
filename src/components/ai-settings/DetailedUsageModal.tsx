@@ -41,7 +41,7 @@ export function DetailedUsageModal() {
         {/* Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-stone-100 dark:border-stone-800">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <div className="w-10 h-10 rounded-xl bg-[#faf2f2] border border-[#ebd8d8] flex items-center justify-center text-[#550000]">
               <BarChart3 className="w-5 h-5" />
             </div>
             <div>

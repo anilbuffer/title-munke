@@ -112,8 +112,8 @@ export const AI_PROVIDERS: AIProvider[] = [
     id: 'google',
     name: 'Google Gemini',
     logo: 'Gemini',
-    badgeColor: 'text-blue-700 dark:text-blue-400',
-    badgeBg: 'bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800',
+    badgeColor: 'text-[#550000]',
+    badgeBg: 'bg-[#faf2f2] border-[#ebd8d8]',
     status: 'operational',
     latencyMs: 195,
     availableModels: [

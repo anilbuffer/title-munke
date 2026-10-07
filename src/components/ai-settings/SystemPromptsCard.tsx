@@ -61,7 +61,7 @@ export function SystemPromptsCard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#f0e7dd]">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shrink-0">
+          <div className="w-9 h-9 rounded-xl bg-[#faf2f2] border border-[#ebd8d8] flex items-center justify-center text-[#550000] shrink-0">
             <FileCode2 className="w-5 h-5" />
           </div>
           <div>
@@ -79,7 +79,7 @@ export function SystemPromptsCard() {
 
         <button
           onClick={() => resetAllPromptsForFunction(activePromptTab)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-colors self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-[#550000] bg-[#faf2f2] hover:bg-[#f5e4e4] border border-[#ebd8d8] transition-colors self-start sm:self-auto cursor-pointer"
         >
           <span>Reset to Default</span>
         </button>
@@ -96,7 +96,7 @@ export function SystemPromptsCard() {
               onClick={() => setActivePromptTab(tab.key)}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-blue-600 text-white shadow-xs'
+                  ? 'bg-[#550000] text-white shadow-xs'
                   : 'bg-white text-stone-600 hover:bg-[#fbf9f6] border border-[#eadfd4]'
               }`}
             >

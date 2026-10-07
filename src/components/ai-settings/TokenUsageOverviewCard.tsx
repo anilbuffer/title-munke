@@ -45,7 +45,7 @@ export function TokenUsageOverviewCard() {
 
         <button
           onClick={() => setIsUsageModalOpen(true)}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 self-start sm:self-auto group cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#550000] hover:text-[#700000] self-start sm:self-auto group cursor-pointer"
         >
           <span>View Detailed Usage</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -86,14 +86,14 @@ export function TokenUsageOverviewCard() {
 
                 <div className="space-y-1.5 mb-4">
                   <div className="flex justify-end">
-                    <span className={`text-[11px] font-bold ${isOpenAI ? 'text-emerald-600' : 'text-blue-600'}`}>
+                    <span className={`text-[11px] font-bold ${isOpenAI ? 'text-emerald-600' : 'text-[#550000]'}`}>
                       {percentage}%
                     </span>
                   </div>
                   <div className="h-2 w-full bg-stone-100 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
-                        isOpenAI ? 'bg-emerald-500' : 'bg-blue-500'
+                        isOpenAI ? 'bg-emerald-500' : 'bg-[#550000]'
                       }`}
                       style={{ width: `${percentage}%` }}
                     />
