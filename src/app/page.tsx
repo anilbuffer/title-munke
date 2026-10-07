@@ -149,13 +149,6 @@ export default function AISettingsPage() {
             )}
 
           </div>
-
-          {/* Footer */}
-          <footer className="mt-8 text-center text-xs text-stone-500 font-sans">
-            <p>
-              © 2026 TITLE MUNKE Technologies Inc. • The Smarter Way to Search Property Records • AI Governance & Model Orchestration
-            </p>
-          </footer>
         </main>
       </div>
 
