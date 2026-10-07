@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { GovernanceTabs, SettingsSubTab } from '@/components/ai-settings/GovernanceTabs';
-import { QuickChangeModelCard } from '@/components/ai-settings/QuickChangeModelCard';
 import { ModelConfigurationCard } from '@/components/ai-settings/ModelConfigurationCard';
 import { SystemPromptsCard } from '@/components/ai-settings/SystemPromptsCard';
 import { ContextHistorySettingsCard } from '@/components/ai-settings/ContextHistorySettingsCard';
@@ -52,10 +51,6 @@ export default function AISettingsPage() {
         <main className="flex-1 pb-12">
           {activeSettingsTab === 'governance' && (
             <div className="space-y-6 animate-in fade-in duration-300">
-              
-              {/* Top Reference Card: Change AI Model */}
-              <QuickChangeModelCard />
-
               {/* Comprehensive Enterprise AI Settings Console */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
