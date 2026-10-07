@@ -7,27 +7,27 @@ export function AboutModelSwitchingCard() {
   const steps = [
     {
       num: 1,
-      text: 'Select different models for each task (Chatbot, PDF Extraction, etc.).',
+      text: 'Select different models for each task (Chatbot Q&A, Deed PDF OCR, Chain of Title reasoning, and Metes Parser).',
     },
     {
       num: 2,
-      text: 'Conversation history is stored in your database, so you can switch models without losing context.',
+      text: 'Conversation history is stored in your database, so you can switch models without losing parcel inquiry context.',
     },
     {
       num: 3,
-      text: 'Each model will use its own system prompt.',
+      text: 'Each model and pipeline maintains its own system prompt with dynamic property and vesting variables.',
     },
     {
       num: 4,
-      text: 'Changes apply immediately to new requests.',
+      text: 'Standby fallback models automatically maintain uptime if primary gateway providers experience rate limits.',
     },
     {
       num: 5,
-      text: 'Monitor token usage to manage costs and limits.',
+      text: 'Changes apply immediately upon clicking "Save Changes", and live latency can be verified via "Test Connection".',
     },
     {
       num: 6,
-      text: 'Top up token allocations at any time via "Add Tokens" to prevent query interruptions when limits are reached.',
+      text: 'Monitor token consumption across models, and top up allocations anytime via "Add Tokens" to prevent query throttling.',
     },
   ];
 
