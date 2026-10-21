@@ -68,9 +68,8 @@ export function TokenUsageOverviewCard() {
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <div
-                      className={`w-6 h-6 rounded-md flex items-center justify-center ${
-                        isOpenAI ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
-                      }`}
+                      className={`w-6 h-6 rounded-md flex items-center justify-center ${isOpenAI ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
+                        }`}
                     >
                       {isOpenAI ? <OpenAIIcon /> : <ClaudeIcon />}
                     </div>
@@ -92,9 +91,8 @@ export function TokenUsageOverviewCard() {
                   </div>
                   <div className="h-2 w-full bg-stone-100 rounded-full overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 ${
-                        isOpenAI ? 'bg-emerald-500' : 'bg-[#550000]'
-                      }`}
+                      className={`h-full rounded-full transition-all duration-500 ${isOpenAI ? 'bg-emerald-500' : 'bg-[#550000]'
+                        }`}
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
@@ -135,7 +133,7 @@ export function TokenUsageOverviewCard() {
                 <button
                   type="button"
                   onClick={() => openAddTokensModal(item)}
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-[#faf2f2] text-[#550000] border border-[#ebd8d8] hover:bg-[#550000] hover:text-white transition-all shadow-2xs shrink-0 cursor-pointer active:scale-95 font-sans"
+                  className="hidden inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-[#faf2f2] text-[#550000] border border-[#ebd8d8] hover:bg-[#550000] hover:text-white transition-all shadow-2xs shrink-0 cursor-pointer active:scale-95 font-sans"
                   title={`Add tokens to ${item.modelName}`}
                 >
                   <Plus className="w-3.5 h-3.5" />
