@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useAISettings } from '@/context/AISettingsContext';
-import { BarChart3, ArrowRight, Plus } from 'lucide-react';
+import { BarChart3, ArrowRight /*, Plus */ } from 'lucide-react';
 import { formatNumber } from '@/lib/utils';
 
 function OpenAIIcon({ className = 'w-4 h-4 text-emerald-600' }: { className?: string }) {
@@ -23,7 +23,7 @@ function ClaudeIcon({ className = 'w-4 h-4 text-amber-600' }: { className?: stri
 }
 
 export function TokenUsageOverviewCard() {
-  const { tokenUsage, setIsUsageModalOpen, openAddTokensModal } = useAISettings();
+  const { tokenUsage, setIsUsageModalOpen /*, openAddTokensModal */ } = useAISettings();
 
   return (
     <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#eadfd4] shadow-xs transition-colors">
@@ -130,15 +130,17 @@ export function TokenUsageOverviewCard() {
                   </div>
                 </div>
 
+                {/* Add Tokens action button hidden for now
                 <button
                   type="button"
                   onClick={() => openAddTokensModal(item)}
-                  className="hidden inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-[#faf2f2] text-[#550000] border border-[#ebd8d8] hover:bg-[#550000] hover:text-white transition-all shadow-2xs shrink-0 cursor-pointer active:scale-95 font-sans"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-[#faf2f2] text-[#550000] border border-[#ebd8d8] hover:bg-[#550000] hover:text-white transition-all shadow-2xs shrink-0 cursor-pointer active:scale-95 font-sans"
                   title={`Add tokens to ${item.modelName}`}
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add Tokens</span>
                 </button>
+                */}
               </div>
             </div>
           );
